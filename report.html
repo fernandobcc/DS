@@ -1,0 +1,939 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document State Analysis Report</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #007cba;
+        }
+        .header h1 {
+            color: #007cba;
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .header .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #007cba, #0056b3);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .metric-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .metric-card .value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 0;
+        }
+        .metric-card .percentage {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            color: #007cba;
+            border-bottom: 2px solid #007cba;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        th {
+            background: #007cba;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+        .analysis-info {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .analysis-info h3 {
+            color: #007cba;
+            margin-top: 0;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .info-item {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #007cba;
+        }
+        .info-item strong {
+            color: #007cba;
+        }
+        .no-data {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Document State Analysis Report</h1>
+            <div class="subtitle">Generated on 2025-06-10 17:51:30</div>
+        </div>
+
+        <div class="analysis-info">
+            <h3>📋 Analysis Parameters</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Time Period:</strong> Last 60 days
+                </div>
+                <div class="info-item">
+                    <strong>Region:</strong> All US Regions
+                </div>
+                <div class="info-item">
+                    <strong>Person Types:</strong> 1, 3, 6
+                </div>
+                <div class="info-item">
+                    <strong>Document Type:</strong> 24 (newsletters)
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <h3>Total Officials</h3>
+                <div class="value">268,554</div>
+            </div>
+            <div class="metric-card">
+                <h3>With Documents</h3>
+                <div class="value">586</div>
+                <div class="percentage">0.2%</div>
+            </div>
+            <div class="metric-card">
+                <h3>Without Documents</h3>
+                <div class="value">267,968</div>
+                <div class="percentage">99.8%</div>
+            </div>
+            <div class="metric-card">
+                <h3>Email Mapping Coverage</h3>
+                <div class="value">2,204</div>
+                <div class="percentage">0.8%</div>
+            </div>
+        </div>
+        
+
+        
+        <div class="section">
+            <h2>📈 Summary Analysis</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Analysis Type</th>
+                            <th>Total Officials</th>
+                            <th>With Documents</th>
+                            <th>Without Documents</th>
+                            <th>% With Documents</th>
+                            <th>With Email Mapping</th>
+                            <th>% With Email Mapping</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr>
+                <td><strong>Executive</strong></td>
+                <td>207454</td>
+                <td>14</td>
+                <td>207440</td>
+                <td>0.01%</td>
+                <td>281</td>
+                <td>0.14%</td>
+            </tr>
+            
+            <tr>
+                <td><strong>Local Member</strong></td>
+                <td>51268</td>
+                <td>1</td>
+                <td>51267</td>
+                <td>0.00%</td>
+                <td>5</td>
+                <td>0.01%</td>
+            </tr>
+            
+            <tr>
+                <td><strong>Member</strong></td>
+                <td>9832</td>
+                <td>571</td>
+                <td>9261</td>
+                <td>5.81%</td>
+                <td>1918</td>
+                <td>19.51%</td>
+            </tr>
+            
+            <tr>
+                <td><strong>SUMMARY</strong></td>
+                <td>268554</td>
+                <td>586</td>
+                <td>267968</td>
+                <td>0.22%</td>
+                <td>2204</td>
+                <td>0.82%</td>
+            </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+
+        
+        <div class="section">
+            <h2>📊 Document Frequency Analysis</h2>
+            <p>Distribution of officials by their document production levels in the last 60 days:</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Document Frequency</th>
+                            <th>Official Count</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr>
+                <td><strong>High (8+ docs)</strong></td>
+                <td>101</td>
+                <td>0.04%</td>
+            </tr>
+            
+            <tr>
+                <td><strong>Medium (4-7 docs)</strong></td>
+                <td>88</td>
+                <td>0.03%</td>
+            </tr>
+            
+            <tr>
+                <td><strong>Low (1-3 docs)</strong></td>
+                <td>161</td>
+                <td>0.06%</td>
+            </tr>
+            
+            <tr>
+                <td><strong>None</strong></td>
+                <td>267258</td>
+                <td>99.87%</td>
+            </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+
+        
+        <div class="section">
+            <h2>📧 Email Analysis</h2>
+            <p>Email address and mapping coverage for officials:</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Count</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Total Officials</strong></td>
+                            <td>268554</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>Officials with Email Address</td>
+                            <td>180585</td>
+                            <td>67.24%</td>
+                        </tr>
+                        <tr>
+                            <td>Officials with Send Messages To</td>
+                            <td>1</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Officials without Any Email</td>
+                            <td>87968</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Officials with Constituent Mapping</td>
+                            <td>2204</td>
+                            <td>0.82%</td>
+                        </tr>
+                        <tr>
+                            <td>Officials Marked Can't Match</td>
+                            <td>0</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+
+        
+        <div class="section">
+            <h2>👥 Officials Without Documents</h2>
+            <p>Officials who have not published any newsletters in the last 60 days (267258 total):</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Person Type</th>
+                            <th>Email</th>
+                            <th>Send Messages To ID</th>
+                            <th>Has Email Mapping</th>
+                            <th>Mapped Email</th>
+                            <th>Marked Can't Match</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr>
+                <td>3778547</td>
+                <td><strong>2 Test Official</strong></td>
+                <td>3</td>
+                <td>2TestOfficial@2workemail.com</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3388953</td>
+                <td><strong>&#8203;&#8203;Lillian Kimbell</strong></td>
+                <td>3</td>
+                <td>-</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3904153</td>
+                <td><strong>&#8203;John McNairy</strong></td>
+                <td>3</td>
+                <td>-</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3362913</td>
+                <td><strong>&#8203;Yammilette Rodriguez</strong></td>
+                <td>3</td>
+                <td>-</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3996928</td>
+                <td><strong>Aakash Ahuja</strong></td>
+                <td>3</td>
+                <td>-</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>1317612</td>
+                <td><strong>Aakash Bhatt</strong></td>
+                <td>3</td>
+                <td>bhattan@state.gov</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3842538</td>
+                <td><strong>Aaliyah El-Amin-Turner</strong></td>
+                <td>3</td>
+                <td>ael-amin-turner@penfield.edu</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3854820</td>
+                <td><strong>Aaliya Khalif</strong></td>
+                <td>3</td>
+                <td>-</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3829203</td>
+                <td><strong>A Almy</strong></td>
+                <td>3</td>
+                <td>-</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3869310</td>
+                <td><strong>Aaren Rutan</strong></td>
+                <td>3</td>
+                <td>arutan@camraiders.com</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3943328</td>
+                <td><strong>Aaric Davis</strong></td>
+                <td>3</td>
+                <td>davisa@rv337.org</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3875348</td>
+                <td><strong>Aarie Wade</strong></td>
+                <td>3</td>
+                <td>wadea@grps.org</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3883084</td>
+                <td><strong>Aarika Walker</strong></td>
+                <td>3</td>
+                <td>awalker@rangers1.net</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3865369</td>
+                <td><strong>Aaron Abrahamson</strong></td>
+                <td>3</td>
+                <td>aaron.abrahamson@championlocal.org</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>143280</td>
+                <td><strong>Aaron Adams</strong></td>
+                <td>3</td>
+                <td>aaron.adams@temeculaca.gov</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>2519038</td>
+                <td><strong>Aaron Adams</strong></td>
+                <td>3</td>
+                <td>aaron.adams@temeculaca.gov</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3358311</td>
+                <td><strong>Aaron Adams</strong></td>
+                <td>6</td>
+                <td>aadams@duquesnepa.us</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>639285</td>
+                <td><strong>Aaron Albaugh</strong></td>
+                <td>6</td>
+                <td>aalbaugh@co.lassen.ca.us</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3819764</td>
+                <td><strong>Aaron Albus</strong></td>
+                <td>3</td>
+                <td>aalbus@sacoschools.k12.mt.us</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3867794</td>
+                <td><strong>Aaron Albus</strong></td>
+                <td>3</td>
+                <td>aalbus@sacoschools.k12.mt.us</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3780956</td>
+                <td><strong>Aaron Aldridge</strong></td>
+                <td>3</td>
+                <td>aaldridge@weskanschools.org</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3787000</td>
+                <td><strong>Aaron Allen</strong></td>
+                <td>3</td>
+                <td>-</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3949859</td>
+                <td><strong>Aaron Allen</strong></td>
+                <td>3</td>
+                <td>aallen@lincoln.k12.nc.us</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3903485</td>
+                <td><strong>Aaron Allison</strong></td>
+                <td>6</td>
+                <td>aaron.allison@gallatintn.gov</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>2234628</td>
+                <td><strong>Aaron Alton</strong></td>
+                <td>3</td>
+                <td>aaorn.t.alton@omb.eop.gov</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3845441</td>
+                <td><strong>Aaron Ammerman</strong></td>
+                <td>3</td>
+                <td>aammerman@isd118.org</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>137606</td>
+                <td><strong>Aaron Ammons</strong></td>
+                <td>3</td>
+                <td>-</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3904613</td>
+                <td><strong>Aaron Amundson</strong></td>
+                <td>3</td>
+                <td>aaron.amundson@bis.doc.gov</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3871173</td>
+                <td><strong>Aaron Anderson</strong></td>
+                <td>3</td>
+                <td>-</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>4023591</td>
+                <td><strong>Aaron Anderson</strong></td>
+                <td>3</td>
+                <td>-</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3793873</td>
+                <td><strong>Aaron Appleby</strong></td>
+                <td>3</td>
+                <td>aappleby@ldisd.net</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3512201</td>
+                <td><strong>Aaron Aranas</strong></td>
+                <td>3</td>
+                <td>-</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3808017</td>
+                <td><strong>Aaron Aubin</strong></td>
+                <td>3</td>
+                <td>aaubin@leepublicschools.net</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>1218390</td>
+                <td><strong>Aaron Augustian</strong></td>
+                <td>6</td>
+                <td>augustian.aaron@kewauneeco.org</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>2192846</td>
+                <td><strong>Aaron Avila</strong></td>
+                <td>3</td>
+                <td>avila.aaron@epa.gov</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>1630813</td>
+                <td><strong>Aaron Aylward</strong></td>
+                <td>1</td>
+                <td>Aaron.Aylward@sdlegislature.gov</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>1340551</td>
+                <td><strong>Aaron Baack</strong></td>
+                <td>3</td>
+                <td>aaron.baack@dia.iowa.gov</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>1612841</td>
+                <td><strong>Aaron Baker</strong></td>
+                <td>6</td>
+                <td>abaker@ogdenny.com</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3378240</td>
+                <td><strong>Aaron Baker</strong></td>
+                <td>6</td>
+                <td>aaron.baker@cityofbrevard.com</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3861782</td>
+                <td><strong>Aaron Baker</strong></td>
+                <td>3</td>
+                <td>-</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>1192354</td>
+                <td><strong>Aaron Banks</strong></td>
+                <td>6</td>
+                <td>abanks@jacksonms.gov</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3921910</td>
+                <td><strong>Aaron Barak</strong></td>
+                <td>6</td>
+                <td>abarak@cityofsthelena.gov</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3841817</td>
+                <td><strong>Aaron Bauer</strong></td>
+                <td>3</td>
+                <td>aaron.bauer@knoxschools.org</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3843776</td>
+                <td><strong>Aaron Bauer</strong></td>
+                <td>3</td>
+                <td>bauera@vcsc.k12.in.us</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3927161</td>
+                <td><strong>Aaron Bautista</strong></td>
+                <td>3</td>
+                <td>abautista@nshe.nevada.edu</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3961489</td>
+                <td><strong>Aaron Bayer</strong></td>
+                <td>3</td>
+                <td>aaron.bayer@ortrail.k12.or.us</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>19582</td>
+                <td><strong>Aaron Bean</strong></td>
+                <td>1</td>
+                <td>-</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3943580</td>
+                <td><strong>Aaron Becker</strong></td>
+                <td>3</td>
+                <td>abecker@hdcsd.org</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>259058</td>
+                <td><strong>Aaron Benton</strong></td>
+                <td>6</td>
+                <td>Council@spencercounty.in.gov</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+            <tr>
+                <td>3508989</td>
+                <td><strong>Aaron Berg</strong></td>
+                <td>6</td>
+                <td>ABerg@ci.cambridge.mn.us</td>
+                <td>-</td>
+                <td>No</td>
+                <td>-</td>
+                <td>No</td>
+            </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="background: #fff3cd; padding: 15px; border-radius: 4px; margin-top: 15px; border-left: 4px solid #ffc107;">
+                <strong>Note:</strong> Showing first 50 of 267258 officials without documents.
+                See the CSV file for the complete list.
+            </div>
+            
+        </div>
+        
+
+        <div class="footer">
+            <p>Report generated by Quorum Document Analysis Tool</p>
+            <p>Output directory: ./document_analysis_20250610_175130</p>
+        </div>
+    </div>
+</body>
+</html>
